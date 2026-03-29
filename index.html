@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mhoo TUTA Adventure - Premium Cute</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Mitr:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ffafbd;
+            --soft-pink: #ffc3a0;
+            --deep-pink: #ff8a9a;
+            --success-green: #90ffa8;
+            --glass: rgba(255, 255, 255, 0.75);
+            --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Kanit', sans-serif; }
+
+        body {
+            background-image: url('background.png');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper { width: 100%; height: 100vh; position: relative; perspective: 1000px; }
+
+        section {
+            display: none; height: 100vh; width: 100%;
+            justify-content: center; align-items: center;
+            position: absolute; top: 0; left: 0;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        section.active { display: flex; animation: fadeInScale 0.6s forwards; }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- ✨ 1. Premium Login Section --- */
+        .login-card {
+            background: var(--glass);
+            padding: 50px 50px;
+            border-radius: 40px;
+            box-shadow: var(--card-shadow);
+            width: 380px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 0, 119, 0.5);
+            transition: all 1.0 s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-pink);
+        }
+
+        .avatar-container {
+    width: 120px; 
+    height: 120px;
+    margin: 0 auto 30px; /* จัดกึ่งกลาง และเว้นระยะห่างด้านล่าง 30px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.avatar-img {
+    width: 150%; 
+    height: 150%;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    object-fit: cover;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    animation: pulse 2s infinite ease-in-out;
+}
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 175, 189, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(255, 175, 189, 0); }
+        }
+
+        .input-group { position: relative; margin-bottom: 30px; }
+        .input-group input {
+            width: 100%; padding: 15px 20px;
+            border: 2px solid rgba(255, 175, 189, 0.3);
+            border-radius: 20px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus { border-color: var(--primary-pink); background: #fff; box-shadow: 0 5px 15px rgba(255, 175, 189, 0.1); }
+        .input-group label { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #aaa; pointer-events: none; transition: 0.3s; }
+        .input-group input:focus + label, .input-group input:valid + label { top: -12px; left: 15px; font-size: 13px; color: var(--deep-pink); background: #fff; padding: 0 8px; border-radius: 5px; }
+
+        .btn-login {
+          width: 100%; 
+          padding: 15px; 
+          border: none; 
+          border-radius: 20px;
+          background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+          color: white; 
+          font-size: 20px; 
+          font-weight: 600; 
+          cursor: pointer;
+          box-shadow: 0 10px 20px rgba(255, 175, 189, 0.4);
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+          /* เอฟเฟกต์ตอนเอาเมาส์ไปวาง (Hover) */
+        .btn-login:hover {
+          transform: scale(1.05) translateY(-3px); /* ขยายและลอยขึ้น */
+          background: linear-gradient(135deg, #5bff71 0%, #8aff9a 100%); /* เปลี่ยนสี Gradient */
+          box-shadow: 0 15px 30px rgba(255, 138, 154, 0.6); /* เรืองแสงเข้มขึ้น */
+       }
+
+/* เอฟเฟกต์ตอนคลิก (Active) */
+        .btn-login:active {
+           transform: scale(0.95);
+        }
+
+        .btn-login:hover { transform: scale(1.05); box-shadow: 0 15px 25px rgba(255, 175, 189, 0.5); }
+
+        /* --- 🎮 2. Better Mini Game Section --- */
+        .game-container {
+            background: var(--glass); padding: 30px; border-radius: 40px;
+            width: 90%; max-width: 800px; text-align: center;
+            backdrop-filter: blur(20px); box-shadow: var(--card-shadow);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+         /* หลอดคะแนนลายลูกอม */
+        .progress-container { 
+           width: 100%; height: 35px; background: #eee; border-radius: 20px; 
+           margin: 40px 0; position: relative; box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+           overflow: visible; /* สำคัญ: เพื่อให้หัวเฟิร์นลอยทับหลอดได้ */
+}
+
+        /* --- 🍭 หลอดคะแนนลายลูกอมขยับได้ --- */
+        .progress-bar { 
+            width: 0%; height: 100%; 
+            background: linear-gradient(45deg, #ff6b84 25%, #ffffff 25%, #ff6b84 50%, #ffffff 50%, #ff6b84 75%, #ffffff 75%, #ff6b84);
+            background-size: 40px 40px; border-radius: 20px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: candyStripes 1s linear infinite; position: relative;
+        }
+
+        @keyframes candyStripes { from { background-position: 0 0; } to { background-position: 40px 0; } }
+
+        /* --- 🐷 รูปหัวเฟิร์นนักวิ่งแบบดุ๊กดิ๊ก --- */
+        .fern-head {
+            position: absolute; 
+            right: -35px; /* ให้หัวโผล่พ้นปลายหลอด */
+            top: 50%;
+            width: 70px; 
+            height: 70px; 
+            border-radius: 50%; 
+            border: 4px solid #fff;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 10;
+            /* ใส่ Animation ดุ๊กดิ๊ก */
+            animation: dugDik 0.8s infinite ease-in-out;
+        }
+
+        @keyframes dugDik {
+            0%, 100% { transform: translateY(-50%) rotate(-10deg) scale(1); }
+            50% { transform: translateY(-65%) rotate(10deg) scale(1.1); }
+        }
+
+        .table-area {
+            background: rgba(255, 255, 255, 0.3); height: 350px; border-radius: 30px;
+            position: relative; margin: 25px 0; overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.5);
+            background-image: radial-gradient(circle, rgba(255, 175, 189, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .food-item {
+            position: absolute; font-size: 3.5rem; cursor: pointer;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+            animation: spawnPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.2s;
+        }
+
+        @keyframes spawnPop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .food-item:hover { transform: scale(1.2) rotate(10deg); }
+
+        .particle {
+            position: absolute; pointer-events: none;
+            width: 10px; height: 10px; border-radius: 50%;
+            animation: explode 0.6s forwards;
+        }
+
+        @keyframes explode {
+            to { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+        }
+
+        /* --- 💌 3. Cute Letter Section --- */
+        .envelope-wrapper { position: relative; width: 300px; height: 300px; background: #fff; cursor: pointer; border-radius: 0 0 10px 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 200px; }
+        .envelope-wrapper::before {
+            content: ''; position: absolute; top: -100px; left: 0;
+            border-left: 150px solid transparent; border-right: 150px solid transparent;
+            border-bottom: 100px solid #f9f9f9; transform-origin: bottom; transition: 0.6s;
+            z-index: 5;
+        }
+
+        .envelope-wrapper.open::before { transform: rotateX(180deg); z-index: 0; }
+        /* --- แก้ไขตรงนี้เพื่อให้หัวใจหายไปเมื่อเปิดจดหมาย --- */
+        .envelope-wrapper.open .heart {
+            opacity: 0; /* ทำให้จางหายไป */
+            visibility: hidden; /* ปิดการมองเห็น */
+            transition: 0.3s; /* ให้ค่อยๆ หายไปอย่างนุ่มนวล */
+        }
+        .envelope-wrapper .heart {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 40px; color: #ff4b5c; z-index: 6; transition: 0.3s;
+        }
+
+        .letter-content {
+            position: absolute; top: 10; left: 10px; right: 10px;
+            background: white; padding: 20px; border-radius: 10px;
+            transition: 0.8s; transform: translateY(0); z-index: 1;
+            opacity: 0; visibility: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 450px; left: -75px;
+        }
+       
+        .envelope-wrapper.open .letter-content {
+            transform: translateY(-300px); opacity: 1; visibility: visible;
+            height: auto; padding: 30px;
+        }
+         
+        .slider-container { width: 100%; height: 400px; overflow: hidden; border-radius: 15px; margin: 15px 0; position: relative; }
+        .slider-img { width: 100%; height: 100%; object-fit: cover; position: absolute; transition: 0.5s; opacity: 0; left:0; top:0; }
+        .slider-img.active { opacity: 1; }
+
+        .blessing-text { font-family: 'Mitr', sans-serif; font-size: 1.1rem; line-height: 1.6; color: #444; }
+
+        .shake { animation: shake 0.5s; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); } 20%, 40%, 60%, 80% { transform: translateX(10px); } }
+        
+    </style>
+</head>
+<body>
+    <!-- เสียงตอนกด item -->
+     <audio id="goodSound"><source src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" type="audio/mpeg"></audio>
+     <audio id="badSound"><source src="https://assets.mixkit.co/active_storage/sfx/2959/2959-preview.mp3" type="audio/mpeg"></audio>
+    <!-- เสียงเพลงอวยพร (เปลี่ยนลิงก์เป็นเพลงที่คุณชอบได้) -->
+    <audio id="bgMusic" loop>
+        <source src="9  - SPF paiiinntt cover.mp3" type="audio/mpeg">
+    </audio>
+    
+
+    <div class="wrapper">
+        <!-- 🔒 1. Login -->
+        <section id="login-section" class="active">
+            <div class="login-card">
+                <div class="avatar-container">
+                    <img src="avatar.png" class="avatar-img" alt="Avatar">
+                </div>
+                <h2 style="color: var(--deep-pink); font-family: 'Mitr', sans-serif;">Welcome, Mhoo AuamAuan! ✨</h2>
+                <form id="loginForm">
+                    <div class="input-group"><input type="text" id="username" required autocomplete="off"><label>Username</label></div>
+                    <div class="input-group"><input type="password" id="password" required><label>Password</label></div>
+                    <button type="submit" class="btn-login">Go Adventure 🌍</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 🥣 2. Mini Game -->
+        <section id="game-section">
+            <div class="game-container">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div style="font-size:1.5rem; color: var(--deep-pink);">Score: <span id="score">0</span></div>
+                    <div style="font-size:1.5rem; color: #666;">Time: <span id="timer">30</span>s</div>
+                </div>
+                 <!-- --- จุดที่ 2: เพิ่มรูปเฟิร์นเข้าไปในหลอด --- -->
+                <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                <img src="fern-head.png" class="fern-head" alt="Fern Head">
+            </div>
+            </div>
+                <h3 style="color: #555;">Feed Mhoo TUTA! 🍩🍕🍒</h3>
+                <div class="table-area" id="table-area"></div>
+                <p style="color: #999;">Get 100 points to unlock the special letter!</p>
+            </div>
+        </section>
+
+        <!-- 💌 3. Letter Section -->
+        <section id="letter-section">
+            <div id="envelope" class="envelope-wrapper">
+                <div class="heart">🎀</div>
+                <div class="letter-content">
+                    <h2 style="color: var(--deep-pink); margin-bottom: 45px;">For I MHOO FERN 💌</h2>
+                    <div class="slider-container" id="slider">
+                        <!-- เปลี่ยนลิงก์รูปภาพในสไลด์ตรงนี้ได้เลย -->
+                        <img src="photo1.png" class="slider-img active">
+                        <img src="photo2.png" class="slider-img">
+                        <img src="photo3.png" class="slider-img">
+                    </div>
+                    <p class="blessing-text">
+                        ยินดีด้วยนะหมูตุ๊ต๊ะอ้วนๆ! อิ่มเลยพุงป่องเลย <br>
+                        อ้วนแล้วอ้วนอีก อย่ามาทับเตอร์นะ กลัว <br>
+                        ทำให้แบบนี้ต้องมีรางวัลนะ <br>
+                        ตุ๊ต๊ะมากนะอ้วนไอ่อ้วนน ✨🌸🐖
+                    </p>
+                    <p style="margin-top:15px; font-weight:600; color: var(--primary-pink);">MAKE BY DZ DEVELOPER</p>
+                    <button onclick="location.reload()" style="margin-top:20px; padding:10px 20px; border:none; border-radius:10px; background:var(--primary-pink); color:white; cursor:pointer;">Restart Game</button>
+                </div>
+            </div>
+            <p id="openHint" style="position:absolute; bottom:15%; color:white; font-size:1.2rem; animation: pulse 2s infinite;">คลิกที่ซองจดหมายเพื่อเปิด 👆</p>
+        </section>
+    </div>
+
+    <script>
+        const GOOD_FOOD = ['🍕', '🍔', '🍟', '🍩', '🍰', '🍓', '🍗', '🍒', '🧁', '🍪'];
+        const BAD_STUFF = ['💣', '👞', '🌵', '☠️', '💩', '🧱'];
+        let score = 0, timeLeft = 30, gameActive = false, gameTimer, spawnInterval;
+
+        // --- 1. Login ---
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            if (user === "DEKAUANCOPTER" && pass === "TUTAAUANAUAN") {
+                transition('game-section');
+                setTimeout(startGame, 300);
+            } else {
+                const card = document.querySelector('.login-card');
+                card.classList.add('shake');
+                setTimeout(() => card.classList.remove('shake'), 500);
+            }
+        });
+
+        function transition(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        // --- 2. Game ---
+        function startGame() {
+            gameActive = true;
+            gameTimer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft;
+                if (timeLeft <= 0) endGame(false);
+            }, 1000);
+            spawnInterval = setInterval(spawnItem, 600);
+        }
+
+        function spawnItem() {
+            if (!gameActive) return;
+            const isGood = Math.random() > 0.35;
+            const item = document.createElement('div');
+            item.className = 'food-item';
+            item.innerText = isGood ? GOOD_FOOD[Math.floor(Math.random() * GOOD_FOOD.length)] : BAD_STUFF[Math.floor(Math.random() * BAD_STUFF.length)];
+            item.style.left = Math.random() * 85 + '%';
+            item.style.top = Math.random() * 80 + '%';
+            
+            item.onclick = (e) => {
+                createParticles(e.clientX, e.clientY, isGood ? '#ffafbd' : '#666');
+                if (isGood) {
+                        score += 10;
+                        // --- เพิ่มบรรทัดนี้ ---
+                        document.getElementById('goodSound').currentTime = 0; 
+                        document.getElementById('goodSound').play(); 
+                        // -------------------
+                    } else {
+                        score = Math.max(0, score - 20);
+                        // --- เพิ่มบรรทัดนี้ ---
+                        document.getElementById('badSound').currentTime = 0; 
+                        document.getElementById('badSound').play(); 
+                        // -------------------
+                    }
+                    
+                    document.getElementById('score').innerText = score;
+                    document.getElementById('progressBar').style.width = Math.min(100, score) + '%';
+                    item.remove();
+                    if (score >= 100) endGame(true);
+                };
+            document.getElementById('table-area').appendChild(item);
+            setTimeout(() => { if(item.parentNode) item.remove(); }, 1800);
+        }
+
+        function createParticles(x, y, color) {
+            for(let i=0; i<8; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = x + 'px'; p.style.top = y + 'px';
+                p.style.backgroundColor = color;
+                p.style.setProperty('--tx', (Math.random()-0.5)*100 + 'px');
+                p.style.setProperty('--ty', (Math.random()-0.5)*100 + 'px');
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 600);
+            }
+        }
+
+        function endGame(success) {
+            gameActive = false;
+            clearInterval(gameTimer); clearInterval(spawnInterval);
+            if (success) { transition('letter-section'); }
+            else { alert('อ้วนแพ้ ต้องโดนลงโทษนะ บทลงโทษคือ จกให้ดู!!! 🐷'); location.reload(); }
+        }
+
+        // --- 3. Letter & Music ---
+        const envelope = document.getElementById('envelope');
+        const music = document.getElementById('bgMusic');
+        let currentSlide = 0;
+
+        envelope.onclick = () => {
+            envelope.classList.add('open');
+            document.getElementById('openHint').style.display = 'none';
+            music.play().catch(() => console.log('Autoplay blocked'));
+            startSlider();
+        };
+
+        function startSlider() {
+            const imgs = document.querySelectorAll('.slider-img');
+            setInterval(() => {
+                imgs[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % imgs.length;
+                imgs[currentSlide].classList.add('active');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
